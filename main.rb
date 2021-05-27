@@ -9,7 +9,7 @@ class Player
 
   def show_hand
     self.hand.each {|card| puts "#{self.name} has a card value of #{card.value}"}
-    puts "Totaling and amount of #{self.total}"
+    puts "#{self.name} Totaling an amount of #{self.total}"
   end
 end
 
@@ -59,20 +59,39 @@ class Deck
 
 end
 
+class Setup
 
-player1 = Player.new "Juan"
-player2 = Player.new "Bob"
-player3 = Player.new "Steve"
-player4 = Player.new "Joe"
-player5 = Player.new "Johnny"
-dealer = Player.new "Dealer"
+  def init_players
+    i = 1
+    while i < 5 do
+      Players.new("players#{i}")
+    end
 
-deck = Deck.new
-deck.deal(player1)
-deck.deal(player2)
-deck.deal(player3)
-deck.deal(player4)
-deck.deal(player5)
-deck.deal(dealer)
+  end
+end
 
-player1.show_hand
+puts "\e[H\e[2J"
+puts "Welcome to Andros Card Game. Starting up..."
+puts "Creating 5 players including dealer..."
+puts "Object of game is to beat dealer in total value of cards"
+
+
+
+
+# player1 = Player.new "Juan"
+# player2 = Player.new "Bob"
+# player3 = Player.new "Steve"
+# player4 = Player.new "Joe"
+# player5 = Player.new "Johnny"
+# dealer = Player.new "Dealer"
+
+# deck = Deck.new
+# deck.deal(player1)
+# deck.deal(player2)
+# deck.deal(player3)
+# deck.deal(player4)
+# deck.deal(player5)
+# deck.deal(dealer)
+
+# puts "\e[H\e[2J"
+# player1.show_hand
