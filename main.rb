@@ -6,6 +6,11 @@ class Player
     @hand = hand
     @total = total
   end
+
+  def show_hand
+    self.hand.each {|card| puts "#{self.name} has a card value of #{card.value}"}
+    puts "Totaling and amount of #{self.total}"
+  end
 end
 
 class Card
@@ -69,3 +74,5 @@ deck.deal(player3)
 deck.deal(player4)
 deck.deal(player5)
 deck.deal(dealer)
+
+player1.show_hand
