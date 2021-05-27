@@ -1,10 +1,9 @@
 class Player
-  attr_accessor :name, :hand, :bankroll, :total
+  attr_accessor :name, :hand, :total
 
-  def initialize name, hand, bankroll, total
+  def initialize name, hand = [], total = 0
     @name = name
     @hand = hand
-    @bankroll = bankroll
     @total = total
   end
 end
@@ -18,6 +17,12 @@ class Card
     @suit = suit
     @value = value
   end
+
+  def generate_card (player)
+    new_card = Card.new face, suit, value
+    player.hand << new_card
+    player.total = player.total + new_card.value
+  end
 end
 
 class Deck
@@ -30,7 +35,7 @@ class Deck
     @faces.each do |face|
       if face.class == Integer
         value = face
-      elseif face == 'Ace'
+      elsif face == 'Ace'
         value = 11
       else
         value = 10
@@ -42,4 +47,25 @@ class Deck
   # !shuffle will replace original array
   @cards.shuffle!
   end
+
+  def deal (player)
+    2.times{@cards.shift.generate_card(player)}
+  end
+
 end
+
+
+player1 = Player.new "Juan"
+player2 = Player.new "Bob"
+player3 = Player.new "Steve"
+player4 = Player.new "Joe"
+player5 = Player.new "Johnny"
+dealer = Player.new "Dealer"
+
+deck = Deck.new
+deck.deal(player1)
+deck.deal(player2)
+deck.deal(player3)
+deck.deal(player4)
+deck.deal(player5)
+deck.deal(dealer)
