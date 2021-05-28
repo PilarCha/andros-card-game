@@ -15,9 +15,6 @@ class Player
     puts "totaling to #{self.total}"
   end
 
-  def track_winner
-
-  end
 end
 
 class Card
@@ -34,8 +31,6 @@ class Card
     new_card = Card.new face, suit, value
     player.hand << new_card
     player.total = player.total + new_card.value
-    player.track_winner
-
   end
 end
 
