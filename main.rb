@@ -1,15 +1,17 @@
 class Player
   attr_accessor :name, :hand, :total
 
-  def initialize name, hand = [], total = 0
+  def initialize name, dealer = false, hand = [], total = 0
     @name = name
     @hand = hand
     @total = total
+    @dealer = dealer
   end
 
   def show_hand
-    self.hand.each {|card| puts "#{self.name} has a card value of #{card.value}"}
-    puts "#{self.name} Totaling an amount of #{self.total}"
+    print "#{@name} received "
+    self.hand.each {|card| print "#{card.value} of #{card.suit} "}
+    puts "totaling to #{self.total}"
   end
 end
 
@@ -55,6 +57,7 @@ class Deck
 
   def deal (player)
     2.times{@cards.shift.generate_card(player)}
+    puts   player.show_hand
   end
 
 end
@@ -64,12 +67,13 @@ class Setup
   def init_players
     deck = Deck.new
     i = 1
-    while i < 5 do
-      puts i
+    while i <= 5 do
       p = Player.new("player#{i}")
       deck.deal(p)
       i = i+1
     end
+    dealer = Player.new('Dealer',true)
+    deck.deal(dealer)
 
 
   end
