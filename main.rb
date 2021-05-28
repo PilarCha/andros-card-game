@@ -62,10 +62,15 @@ end
 class Setup
 
   def init_players
+    deck = Deck.new
     i = 1
     while i < 5 do
-      Players.new("players#{i}")
+      puts i
+      p = Player.new("player#{i}")
+      deck.deal(p)
+      i = i+1
     end
+
 
   end
 end
@@ -73,7 +78,12 @@ end
 puts "\e[H\e[2J"
 puts "Welcome to Andros Card Game. Starting up..."
 puts "Creating 5 players including dealer..."
-puts "Object of game is to beat dealer in total value of cards"
+puts "Object of game is to beat dealer with the highest sum of cards"
+
+begin
+  setup = Setup.new
+  setup.init_players
+end
 
 
 
