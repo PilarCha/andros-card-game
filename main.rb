@@ -18,7 +18,6 @@ class Player
 end
 
 class Card
-
   attr_accessor :face, :suit, :value
 
   def initialize face,suit,value
@@ -32,9 +31,11 @@ class Card
     player.hand << new_card
     player.total = player.total + new_card.value
   end
+
 end
 
 class Deck
+
   def initialize
     # splat will expand the numbers 2-10
     @faces = [*(2..10), 'Jack','Queen','King','Ace']
@@ -53,8 +54,8 @@ class Deck
         @cards << Card.new(face,suit,value)
       end
     end
-  # !shuffle will replace original array
-  @cards.shuffle!
+    # !shuffle will replace original array
+    @cards.shuffle!
   end
 
   def deal (player)
@@ -87,9 +88,7 @@ class Setup
         winner = player
       end
     end
-
     puts "#{winner.name} is the winner with a Total of #{winner.total}"
-
   end
 
 end
