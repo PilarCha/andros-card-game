@@ -74,7 +74,10 @@ class Setup
     end
     dealer = Player.new('Dealer',true)
     deck.deal(dealer)
+  end
 
+  def find_winner
+    dealer_score = @dealer.total
 
   end
 end
@@ -87,6 +90,8 @@ puts "Object of game is to beat dealer with the highest sum of cards"
 begin
   setup = Setup.new
   setup.init_players
+rescue Exception => err
+  $stderr.puts err.message
 end
 
 
