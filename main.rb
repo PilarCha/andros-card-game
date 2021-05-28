@@ -105,24 +105,3 @@ begin
 rescue Exception => err
   $stderr.puts "#{err.class}: #{err.message}"
 end
-
-
-
-
-# player1 = Player.new "Juan"
-# player2 = Player.new "Bob"
-# player3 = Player.new "Steve"
-# player4 = Player.new "Joe"
-# player5 = Player.new "Johnny"
-# dealer = Player.new "Dealer"
-
-# deck = Deck.new
-# deck.deal(player1)
-# deck.deal(player2)
-# deck.deal(player3)
-# deck.deal(player4)
-# deck.deal(player5)
-# deck.deal(dealer)
-
-# puts "\e[H\e[2J"
-# player1.show_hand
