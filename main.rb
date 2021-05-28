@@ -9,9 +9,14 @@ class Player
   end
 
   def show_hand
+    puts
     print "#{@name} received "
     self.hand.each {|card| print "#{card.value} of #{card.suit} "}
     puts "totaling to #{self.total}"
+  end
+
+  def track_winner
+
   end
 end
 
@@ -29,6 +34,8 @@ class Card
     new_card = Card.new face, suit, value
     player.hand << new_card
     player.total = player.total + new_card.value
+    player.track_winner
+
   end
 end
 
@@ -65,33 +72,43 @@ end
 class Setup
 
   def init_players
+    @players = []
     deck = Deck.new
     i = 1
     while i <= 5 do
-      p = Player.new("player#{i}")
-      deck.deal(p)
+      player = Player.new("player#{i}")
+      @players.push(player)
+      deck.deal(player)
       i = i+1
     end
-    dealer = Player.new('Dealer',true)
-    deck.deal(dealer)
+    @dealer = Player.new('Dealer',true)
+    deck.deal(@dealer)
   end
 
   def find_winner
-    dealer_score = @dealer.total
+    winner = @dealer
+    @players.each do |player|
+      if(player.total > winner.total)
+        winner = player
+      end
+    end
+
+    puts "#{winner.name} is the winner with a Total of #{winner.total}"
 
   end
+
 end
 
 puts "\e[H\e[2J"
-puts "Welcome to Andros Card Game. Starting up..."
-puts "Creating 5 players including dealer..."
+puts "Welcome to Andros Card Game. Creating 5 players including dealer..."
 puts "Object of game is to beat dealer with the highest sum of cards"
 
 begin
   setup = Setup.new
   setup.init_players
+  setup.find_winner
 rescue Exception => err
-  $stderr.puts err.message
+  $stderr.puts "#{err.class}: #{err.message}"
 end
 
 
