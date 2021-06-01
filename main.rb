@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :name, :hand, :total
+  attr_accessor :name,:dealer ,:hand, :total
 
   def initialize name, dealer = false, hand = [], total = 0
     @name = name
@@ -88,7 +88,11 @@ class Setup
         winner = player
       end
     end
-    puts "#{winner.name} is the winner with a Total of #{winner.total}"
+    if winner.dealer
+      puts "#{winner.name} wins with a total of #{winner.total}. House wins. Players lose"
+    else
+      puts "#{winner.name} is the winner with a Total of #{winner.total}"
+    end
   end
 
 end
