@@ -125,6 +125,7 @@ begin
     puts "Would you like to start a new game? y/n"
     input = gets.chomp
     if input.casecmp("Y") == 0
+      puts "\e[H\e[2J"
       setup.deal_cards
     else
       puts "Thank you for playing enjoy your day"
