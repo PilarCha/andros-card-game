@@ -17,6 +17,7 @@ class Player
 
   def return_cards
     @hand = []
+    @total = 0
   end
 
 end
@@ -110,16 +111,6 @@ class Setup
     end
   end
 
-  def restart_game
-    puts "Would you like to start a new game? y/n"
-    input = gets.chomp
-    if input.casecmp("Y") == 0
-      setup.deal_cards
-    else
-
-    end
-  end
-
 end
 
 puts "\e[H\e[2J"
@@ -129,7 +120,17 @@ puts "Object of game is to beat dealer with the highest sum of cards"
 begin
   setup = Setup.new
   setup.init_players
-  setup.restart_game
+
+  while true
+    puts "Would you like to start a new game? y/n"
+    input = gets.chomp
+    if input.casecmp("Y") == 0
+      setup.deal_cards
+    else
+      puts "Thank you for playing enjoy your day"
+      break
+    end
+  end
 rescue Exception => err
   $stderr.puts "#{err.class}: #{err.message}"
 end
