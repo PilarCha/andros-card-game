@@ -69,16 +69,23 @@ class Setup
 
   def init_players
     @players = []
-    deck = Deck.new
     i = 1
     while i <= 5 do
       player = Player.new("player#{i}")
       @players.push(player)
-      deck.deal(player)
       i = i+1
     end
     @dealer = Player.new('Dealer',true)
-    deck.deal(@dealer)
+    @players.push(@dealer)
+    deal_cards
+  end
+
+  def deal_cards
+    deck = Deck.new
+    @players.each do |player|
+      deck.deal(player)
+    end
+    find_winner
   end
 
   def find_winner
@@ -95,6 +102,16 @@ class Setup
     end
   end
 
+  def restart_game
+    puts "Would you like to start a new game? y/n"
+    input = gets.chomp
+    if input.casecmp("Y") == 0
+
+    else
+
+    end
+  end
+
 end
 
 puts "\e[H\e[2J"
@@ -104,7 +121,7 @@ puts "Object of game is to beat dealer with the highest sum of cards"
 begin
   setup = Setup.new
   setup.init_players
-  setup.find_winner
+  setup.restart_game
 rescue Exception => err
   $stderr.puts "#{err.class}: #{err.message}"
 end
