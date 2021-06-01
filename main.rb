@@ -15,6 +15,10 @@ class Player
     puts "totaling to #{self.total}"
   end
 
+  def return_cards
+    @hand = []
+  end
+
 end
 
 class Card
@@ -100,13 +104,17 @@ class Setup
     else
       puts "#{winner.name} is the winner with a Total of #{winner.total}"
     end
+    puts
+    @players.each do |player|
+      player.return_cards
+    end
   end
 
   def restart_game
     puts "Would you like to start a new game? y/n"
     input = gets.chomp
     if input.casecmp("Y") == 0
-
+      setup.deal_cards
     else
 
     end
